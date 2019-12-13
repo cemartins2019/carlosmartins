@@ -1,0 +1,10 @@
+from statsmodels.tsa.stattools import adfuller, kpss
+
+df = pd.read_csv('/content/drive/My Drive/Colab Notebooks/Dataset/Arquivo_Outliers.csv', parse_dates=['Data'])
+# ADF Test
+result = adfuller(df.Valor.values, autolag='AIC')
+print(f'Estatística de ADF: {result[0]}')
+print(f'p-value >5%: {result[1]}')
+for key, value in result[4].items():
+    print('Valores Críticos:')
+    print(f'   {key}, {value}')
